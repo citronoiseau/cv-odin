@@ -1,6 +1,8 @@
 import './styles/App.css'
 import { useState } from "react";
 import PersonalForm from './components/PersonalForm'
+import EducationForm from './components/EducationForm'
+
 import Preview from './components/Preview';
 
 const initialData = {
@@ -36,9 +38,20 @@ function App() {
   return (
     <div className="resume-container">
       <div className="resume-editor">
-        <div className="personal-section"> 
-          <PersonalForm formData={formData} setFormData={setFormData} />
-        </div>
+        <section className="personal-section"> 
+          <PersonalForm formData={formData} setFormData={setFormData} section="personal"/>
+        </section>
+        <section className="education-section"> 
+           {formData.education.map((uni) => (
+             <EducationForm
+               key={uni.id}
+               formData={formData}
+               setFormData={setFormData}
+               uniId={uni.id}
+               section="education"
+             />
+            ))}
+        </section>
       </div>
       <div className="resume-preview">
         <Preview formData={formData} />
