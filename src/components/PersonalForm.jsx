@@ -1,5 +1,5 @@
-export default function Form({ formData, setFormData }) {
-  const handleChange = (section, field, value) => {
+export default function Form({ formData, setFormData, section }) {
+  const handleChange = (field, value) => {
     setFormData({
       ...formData,
       [section]: {
@@ -12,27 +12,30 @@ export default function Form({ formData, setFormData }) {
   return (
     <form id="personal-form"> 
       <h2>Personal Info</h2>
-      <label for="name">Full name</label>
+
+      <label htmlFor="email">Full name</label>
       <input
         type="text"
         value={formData.personal.name}
-        onChange={(e) => handleChange("personal", "name", e.target.value)}
+        onChange={(e) => handleChange("name", e.target.value)}
         placeholder="Name"
         id="name"
       />
-      <label for="email">E-mail</label>
+
+      <label htmlFor="email">E-mail</label>
       <input
         type="email"
         value={formData.personal.email}
-        onChange={(e) => handleChange("personal", "email", e.target.value)}
+        onChange={(e) => handleChange("email", e.target.value)}
         placeholder="Email"
         id="email"
       />
-      <label for="phone">Phone</label>
+      
+      <label htmlFor="phone">Phone</label>
       <input
         type="tel"
         value={formData.personal.phone}
-        onChange={(e) => handleChange("personal", "phone", e.target.value)}
+        onChange={(e) => handleChange("phone", e.target.value)}
         placeholder="Phone"
         id="phone"
       />
