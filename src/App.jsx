@@ -2,54 +2,21 @@ import "./styles/App.css";
 import { useState } from "react";
 import PersonalForm from "./components/PersonalForm";
 import EducationForm from "./components/EducationForm";
-
+import { initialData, sectionTemplates } from "./components/Data";
 import Preview from "./components/Preview";
-
-const initialData = {
-  personal: {
-    name: "Ballerina Capuccina",
-    email: "mimimi@mail.com",
-    phone: "+39 347 912 3456",
-  },
-  education: [
-    {
-      name: "University of Bologna",
-      title: "Theatre Arts",
-      startDate: "2021-01-01",
-      endDate: "2025-06-06",
-      id: "uni-1",
-    },
-  ],
-  work: [
-    {
-      title: "Prima Ballerina",
-      place: "Italian Opera",
-      responsibilities: ["dancing", "drinking capuccino"],
-      startDate: "2025-10-01",
-      endDate: null,
-      id: "work-1",
-    },
-  ],
-};
 
 function App() {
   const [formData, setFormData] = useState(initialData);
 
-  function addEducationSection() {
-    const uniNumber = formData.education.length + 1;
-    const newId = `uni-${uniNumber}`;
-    const newEducationEntry = {
-      name: "",
-      title: "",
-      startDate: "",
-      endDate: "",
-      id: newId,
-    };
+  function addSection(sectionName, newEntryTemplate) {
+    const sectionLength = formData[sectionName].length + 1;
+    const newId = `entry-${sectionLength}`;
+    const newEntry = { ...newEntryTemplate, id: newId };
 
-    setFormData({
-      ...formData,
-      education: [...formData.education, newEducationEntry],
-    });
+    setFormData((prev) => ({
+      ...prev,
+      [sectionName]: [...prev[sectionName], newEntry],
+    }));
   }
 
   return (
@@ -63,6 +30,7 @@ function App() {
             section="personal"
           />
         </section>
+
         <section className="education-section">
           <h2>Education</h2>
           {formData.education.length > 0 &&
@@ -75,9 +43,35 @@ function App() {
                 section="education"
               />
             ))}
-          <button type="button" onClick={addEducationSection}>
+          <button
+            type="button"
+            onClick={() =>
+              addSection("education", sectionTemplates["education"])
+            }
+          >
             {" "}
             Add Education
+          </button>
+        </section>
+
+        <section className="work-section">
+          <h2>Practical Experience</h2>
+          {formData.work.length > 0 &&
+            formData.work.map((uni) => (
+              <EducationForm
+                key={uni.id}
+                formData={formData}
+                setFormData={setFormData}
+                uniId={uni.id}
+                section="education"
+              />
+            ))}
+          <button
+            type="button"
+            onClick={() => addSection("work", sectionTemplates["work"])}
+          >
+            {" "}
+            Add Experience
           </button>
         </section>
       </div>
