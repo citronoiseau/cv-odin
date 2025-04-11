@@ -2,22 +2,13 @@ import "./styles/App.css";
 import { useState } from "react";
 import PersonalForm from "./components/PersonalForm";
 import EducationForm from "./components/EducationForm";
+import WorkForm from "./components/WorkForm";
 import { initialData, sectionTemplates } from "./components/Data";
+import { addSection } from "./components/dataHandler";
 import Preview from "./components/Preview";
 
 function App() {
   const [formData, setFormData] = useState(initialData);
-
-  function addSection(sectionName, newEntryTemplate) {
-    const sectionLength = formData[sectionName].length + 1;
-    const newId = `entry-${sectionLength}`;
-    const newEntry = { ...newEntryTemplate, id: newId };
-
-    setFormData((prev) => ({
-      ...prev,
-      [sectionName]: [...prev[sectionName], newEntry],
-    }));
-  }
 
   return (
     <div className="resume-container">
@@ -39,14 +30,19 @@ function App() {
                 key={uni.id}
                 formData={formData}
                 setFormData={setFormData}
-                uniId={uni.id}
+                id={uni.id}
                 section="education"
               />
             ))}
           <button
             type="button"
             onClick={() =>
-              addSection("education", sectionTemplates["education"])
+              addSection(
+                formData,
+                setFormData,
+                "education",
+                sectionTemplates["education"]
+              )
             }
           >
             {" "}
@@ -57,18 +53,25 @@ function App() {
         <section className="work-section">
           <h2>Practical Experience</h2>
           {formData.work.length > 0 &&
-            formData.work.map((uni) => (
-              <EducationForm
-                key={uni.id}
+            formData.work.map((job) => (
+              <WorkForm
+                key={job.id}
                 formData={formData}
                 setFormData={setFormData}
-                uniId={uni.id}
-                section="education"
+                id={job.id}
+                section="work"
               />
             ))}
           <button
             type="button"
-            onClick={() => addSection("work", sectionTemplates["work"])}
+            onClick={() =>
+              addSection(
+                formData,
+                setFormData,
+                "work",
+                sectionTemplates["work"]
+              )
+            }
           >
             {" "}
             Add Experience
