@@ -17,8 +17,11 @@ export const initialData = {
   work: [
     {
       title: "Prima Ballerina",
-      place: "Italian Opera",
-      responsibilities: ["dancing", "drinking capuccino"],
+      company: "Italian Opera",
+      responsibilities: [
+        { id: "r1", text: "dancing" },
+        { id: "r2", text: "drinking cappuccino" },
+      ],
       startDate: "2025-10-01",
       endDate: null,
       id: "entry-1",
@@ -34,8 +37,8 @@ export const sectionTemplates = {
     endDate: "",
   },
   work: {
-    name: "",
     title: "",
+    company: "",
     responsibilities: [],
     startDate: "",
     endDate: "",
