@@ -19,8 +19,8 @@ export const initialData = {
       title: "Prima Ballerina",
       company: "Italian Opera",
       responsibilities: [
-        { id: "r1", text: "dancing" },
-        { id: "r2", text: "drinking cappuccino" },
+        { id: "item-1", text: "dancing" },
+        { id: "item-2", text: "drinking cappuccino" },
       ],
       startDate: "2025-10-01",
       endDate: null,
