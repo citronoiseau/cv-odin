@@ -26,6 +26,7 @@ export const handleChange = (
     [section]: updatedData,
   });
 };
+
 export function handleDelete(formData, setFormData, section, id) {
   const updatedData = formData[section].filter((item) => item.id !== id);
 
@@ -35,18 +36,55 @@ export function handleDelete(formData, setFormData, section, id) {
   });
 }
 
-export function addSection(
+export const handleDeleteItem = (
   formData,
-  setFormData,
-  sectionName,
-  newEntryTemplate
-) {
-  const sectionLength = formData[sectionName].length + 1;
+  setFromData,
+  section,
+  field,
+  id,
+  itemId
+) => {
+  const updatedData = formData[section].map((item) => {
+    if (item.id === id) {
+      const updatedItems = item[field].filter((item) => item.id !== itemId);
+      return { ...item, [field]: updatedItems };
+    }
+    return item;
+  });
+  setFromData({ ...formData, [section]: updatedData });
+};
+
+export function addSection(formData, setFormData, section, template) {
+  const sectionLength = formData[section].length + 1;
   const newId = `entry-${sectionLength}`;
-  const newEntry = { ...newEntryTemplate, id: newId };
+  const newEntry = { ...template, id: newId };
 
   setFormData((prev) => ({
     ...prev,
-    [sectionName]: [...prev[sectionName], newEntry],
+    [section]: [...prev[section], newEntry],
   }));
+}
+
+export function addItem(formData, setFormData, section, field, itemId) {
+  const updatedData = formData[section].map((item) => {
+    if (item.id === itemId) {
+      const fieldLength = item[field].length + 1;
+      const newId = `item-${fieldLength}`;
+      const newItem = { id: newId, text: "" };
+      console.log("Updated item:", {
+        ...item,
+        [field]: [...item[field], newItem],
+      });
+      return {
+        ...item,
+        [field]: [...item[field], newItem],
+      };
+    }
+    return item;
+  });
+  console.log(updatedData);
+  setFormData({
+    ...formData,
+    [section]: updatedData,
+  });
 }

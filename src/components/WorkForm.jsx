@@ -1,4 +1,9 @@
-import { handleChange, handleDelete } from "./dataHandler";
+import {
+  handleChange,
+  handleDelete,
+  handleDeleteItem,
+  addItem,
+} from "./dataHandler";
 
 export default function Form({ formData, setFormData, id, section }) {
   const currentJob = formData[section].find((job) => job.id === id);
@@ -44,27 +49,52 @@ export default function Form({ formData, setFormData, id, section }) {
           id="company"
         />
       </div>
+
       <div className="inputData">
         <label>Responsibilities</label>
         {currentJob.responsibilities.map((resp) => (
-          <input
-            key={resp.id}
-            type="text"
-            value={resp.text || ""}
-            onChange={(e) =>
-              handleChange(
-                formData,
-                setFormData,
-                section,
-                id,
-                "responsibilities",
-                e.target.value,
-                resp.id
-              )
-            }
-            placeholder="Company"
-          />
+          <div key={resp.id} className="responsibility-item">
+            <input
+              type="text"
+              value={resp.text || ""}
+              onChange={(e) =>
+                handleChange(
+                  formData,
+                  setFormData,
+                  section,
+                  id,
+                  "responsibilities",
+                  e.target.value,
+                  resp.id
+                )
+              }
+              placeholder="ex. implemented a new strategy..."
+            />
+            <button
+              type="button"
+              onClick={() =>
+                handleDeleteItem(
+                  formData,
+                  setFormData,
+                  section,
+                  "responsibilities",
+                  id,
+                  resp.id
+                )
+              }
+            >
+              Delete
+            </button>
+          </div>
         ))}
+        <button
+          type="button"
+          onClick={() =>
+            addItem(formData, setFormData, section, "responsibilities", id)
+          }
+        >
+          Add
+        </button>
       </div>
 
       <div className="inputData">
