@@ -35,11 +35,11 @@ export default function Preview({ formData }) {
         {formData.work.map((position) => (
           <div className="position" key={position.id}>
             <div>{position.title}</div>
-            <div>{position.place}</div>
+            <div>{position.company}</div>
             <div>
               <ul>
                 {position.responsibilities.map((item, i) => (
-                  <li key={i}>{item}</li>
+                  <li key={i}>{item.text}</li>
                 ))}
               </ul>
             </div>
