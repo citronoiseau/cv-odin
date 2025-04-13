@@ -1,12 +1,144 @@
+@import url("https://fonts.googleapis.com/css2?family=Charm:wght@400;700&family=Dancing+Script:wght@400..700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Roboto Mono", monospace;
+  font-size: clamp(0.8rem, 1vw, 1rem);
+}
+
+h1,
+h2 {
+  color: #681032;
+}
+
+h1 {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+}
+h2 {
+  font-family: "Charm", cursive;
+  font-size: clamp(1rem, 2vw, 2rem);
+  padding: 5px 0;
 }
 
 .resume-container {
   display: flex;
-  padding: 20px;
-  justify-content: space-around;
+  background-color: rgb(164, 91, 120);
+  justify-content: center;
+  height: 100vh;
 }
 
+.resume-editor {
+  margin: 10px;
+  border-radius: 20px;
+  overflow-y: auto;
+  width: 35%;
+  height: 95vh;
+  overflow-y: auto;
+}
+
+.personal-content,
+.form {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease-out;
+}
+
+.personal-content.visible,
+.form.visible {
+  max-height: 1000px;
+}
+.icon {
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.icon.visible {
+  transform: rotate(180deg);
+}
+button {
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid #fff7fa;
+  background-color: #a51a52;
+  margin: 15px 0 5px 0;
+  color: #fff7fa;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(255, 247, 250, 0.3);
+}
+button:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) inset;
+}
+section {
+  padding: 20px;
+  margin: 10px;
+  background-color: rgb(255, 253, 254);
+  border-radius: 20px;
+  border: 3px solid #681032a4;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-data {
+  display: flex;
+  flex-direction: column;
+}
+
+.resume-preview {
+  font-size: 1.1rem;
+  margin: 10px;
+  border-radius: 20px;
+  background-color: rgb(255, 245, 249);
+  display: flex;
+  align-self: flex-start;
+  width: 60%;
+  height: 95vh;
+  overflow-y: auto;
+}
+
+input,
+textarea {
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: 2px solid #681032a4;
+  transition: all 0.3s ease;
+  background-color: #f8f8f8;
+  outline: none;
+}
+textarea#summary {
+  width: 100%;
+  height: 120px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  resize: none;
+}
+input:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(230, 118, 161, 0.727);
+}
+.responsibility-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.responsibility-item textarea {
+  width: 80%;
+  height: 100px;
+  resize: none;
+  padding: 12px 20px;
+  box-sizing: border-box;
+}

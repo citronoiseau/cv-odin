@@ -25,7 +25,7 @@ export default function Form({ formData, setFormData, section }) {
 
   return (
     <form id="personal-form">
-      <div className="inputData">
+      <div className="input-data">
         <label htmlFor="name">Full name</label>
         <input
           type="text"
@@ -36,7 +36,7 @@ export default function Form({ formData, setFormData, section }) {
         />
       </div>
 
-      <div className="inputData">
+      <div className="input-data">
         <label htmlFor="email">E-mail</label>
         <input
           type="email"
@@ -47,9 +47,11 @@ export default function Form({ formData, setFormData, section }) {
         />
       </div>
 
-      <div className="inputData">
-        <label htmlFor="phone">Phone</label>
-        <span> optional </span>
+      <div className="input-data">
+        <div className="label-data">
+          <label htmlFor="phone">Phone</label>
+          <span> optional </span>
+        </div>
         <input
           type="tel"
           value={formData.personal.phone}
@@ -59,13 +61,23 @@ export default function Form({ formData, setFormData, section }) {
         />
       </div>
 
-      <div className="inputData">
+      <div className="input-data">
         <label htmlFor="photo">Photo</label>
         <input
           type="file"
           onChange={(e) => handleFileChange(e)}
           id="photo"
           accept="image/png, image/jpeg"
+        />
+      </div>
+
+      <div className="input-data">
+        <label htmlFor="summary">Summary</label>
+        <textarea
+          value={formData.personal.summary}
+          onChange={(e) => handleChange("summary", e.target.value)}
+          placeholder="Summary"
+          id="summary"
         />
       </div>
     </form>

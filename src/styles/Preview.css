@@ -1,3 +1,81 @@
 .section {
-    padding: 20px;
+  padding: 20px;
+  color: #3c091d;
+}
+.dividing-line {
+  justify-self: center;
+  width: 95%;
+  border-top: 1px solid #ce2566;
+  opacity: 0.2;
+}
+
+.personal-section {
+  flex-wrap: wrap;
+  padding: 20px;
+  display: flex;
+  gap: 20px;
+}
+
+.personal-info {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.personal-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.personal-email,
+.personal-phone {
+  display: flex;
+  gap: 5px;
+}
+.personal-name {
+  font-family: "Dancing Script", cursive;
+  font-size: clamp(2rem, 3vw, 4rem);
+}
+
+.personal-photo {
+  flex: 0 1 80px;
+  max-height: 90px;
+  width: 100%;
+}
+
+.personal-photo img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  display: block;
+  object-fit: cover;
+}
+
+.uni,
+.position {
+  padding: 10px;
+}
+
+.position-main {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 5px;
+}
+
+.uni-info,
+.position-info {
+  font-weight: 600;
+}
+.uni-dates,
+.position-dates {
+  color: #3c091db8;
+}
+
+.responsibilities {
+  padding-left: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
